@@ -1,0 +1,9 @@
+这是大二写的简单购物网站
+语言：JAVA
+使用工具：eclipse； tomcat； MySQL； Navicat for MySQL
+技术：JSP， HTML， JDBC， JAVA, servlet， 数据库
+分为customer和shop两部份，
+customer顾客登录，
+成功后可以添加欲购买商品到订单。
+shop商家登录，
+成功后可以增删查改商品信息至数据库。
