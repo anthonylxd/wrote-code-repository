@@ -1,0 +1,72 @@
+项目名称： jsp+servlet简单BBS
+具备技术：java，jdbc，mysql，jsp，html，css，servlet
+工具：eclipse，MySQL，sublimetext3
+
+设计：
+	简单的BBS，
+	管理员能够对帖子，用户进行管理。
+	用户可以浏览，发帖，点赞，
+	路人仅可以浏览帖子。	
+
+
+遇到的问题
+	无法用超链接传递两个值
+	post传递，中文乱码。requestset设置编码无效。最后改为get可行，在后servlet里添加	两行代码	request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+	时间设为date类型但数据库与页面无法传值，最后改为String类型。
+
+
+功能介绍：
+
+	角色：路人，用户，管理员
+
+1）路人：
+
+  （1）浏览帖子，
+  （2）无需登录，
+  （3）可注册成为用户。
+
+2）用户：
+
+  （1）登录后浏览帖子，
+  （2）发帖（可选择匿名），
+  （3）为认可的帖子点赞。
+
+3）管理员：
+ 
+  （1）对帖子，可以删除帖子，
+  （2）对用户进行管理，可以删除用户。
+
+
+java文件
+com.connection
+	conn.java
+com.model
+	host.java
+	user.java
+	post.java
+com.service
+	hostservice.java
+	postcurd.java
+	usercurd.java
+com.servlet
+	deletepostservlet.java
+	deleteuserservlet.java
+	dianzanservlet.java
+	displaydservlet.java
+	hostloginservlet.java
+	loginservlet.java
+	newtitle.java
+	useraddservlet.java
+jsp文件
+	fail.jsp
+	hostlogin.jsp
+	index.jsp
+	index2.jsp
+	login.jsp
+	manageuser.jsp
+	newtitle.jsp
+	register.jsp
+其它文件：
+css	
+	index.css
