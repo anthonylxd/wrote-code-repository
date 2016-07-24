@@ -1,0 +1,87 @@
+项目名称： 使用struts2的简单BBS
+具备技术：java，jdbc，mysql，jsp，html，css，struts2
+工具：eclipse，MySQL，sublimetext3
+
+设计：
+	使用struts2的简单的BBS，
+	管理员能够对帖子，用户进行管理。
+	用户可以浏览，发帖，点赞，
+	路人仅可以浏览帖子。	
+
+
+遇到的问题
+1、问题：action无法接收到表单传值（modeldriven方法接受）
+原因：	@Override
+	public Object getModel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+关键：return null；
+解决：return user；
+user为user用户对象
+
+2、问题：找不到action中的userlogin（user user）方法
+原因：方法中含参数，应与execute（）方法相同无参
+解决：userlogin（）；
+
+3、问题<% String usrname = (session.getAttribute("username").toString());%>
+<c:radio name="author" label="发帖人" list="{'<%=session.getAttribute("username").toString() %>','匿名'}"></c:radio>
+(session.getAttribute("username").toString());接受不了传值
+原因：1 类型不同，2 list不能传值
+解决：尚未解决
+
+
+功能介绍：
+
+	角色：路人，用户，管理员
+
+1）路人：
+
+  （1）浏览帖子，
+  （2）无需登录，
+  （3）可注册成为用户。
+
+2）用户：
+
+  （1）登录后浏览帖子，
+  （2）发帖（可选择匿名），
+  （3）为认可的帖子点赞。
+
+3）管理员：
+ 
+  （1）对帖子，可以删除帖子，
+  （2）对用户进行管理，可以删除用户。
+
+
+java文件
+com.connection
+	conn.java
+com.model
+	host.java
+	user.java
+	post.java
+com.service
+	hostservice.java
+	postcurd.java
+	usercurd.java
+com.action
+	hostAction
+	postAction
+	userAction
+
+
+	struts2.xml
+
+jsp文件
+	fail.jsp
+	hostlogin.jsp
+	index.jsp
+	index2.jsp
+	login.jsp
+	manageuser.jsp
+	newtitle.jsp
+	register.jsp
+	hostindex.jsp
+其它文件：
+css	
+	index.css

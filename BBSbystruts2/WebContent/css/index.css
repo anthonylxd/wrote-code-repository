@@ -1,0 +1,33 @@
+#wrap{
+	
+	margin:0 auto; 
+	width:960px;
+}
+body{
+	background-color:#252F34;
+}
+h1{
+	text-align: center;
+	color: blue;
+}
+.title{
+	background: green;
+	text-align: center;
+	color:#fff;
+	margin: 20px;
+	font-size: 15;
+}
+a{
+	margin: 12px;
+	color: #fff;
+	text-decoration:none;
+}
+.graph{
+	margin: 50px;
+	color: #fff;
+	font-size: 21px;
+}
+td{
+	padding:15px 24px; 
+	background:rgba(0,0,0,0.08);
+}

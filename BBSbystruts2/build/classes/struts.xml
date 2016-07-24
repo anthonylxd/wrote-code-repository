@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+   
+   
+    <struts>
+    <package name="user"  extends="struts-default" namespace="/">
+    	<action name="userAction" class="com.action.userAction" method="userlogin">
+    		<result  name="SUCCESS">/index2.jsp</result>
+    		<result  name="ERROR">/login.jsp</result>
+    	</action>
+    	
+    	<action name="useraddAction" class="com.action.userAction" method="useradd">
+    		<result  name="SUCCESS">/index2.jsp</result>
+    		<result  name="ERROR">/register.jsp</result>
+    	</action>
+    	<action name="userdeleteaction" class="com.action.userAction" method="userdelete">
+    		<result  name="SUCCESS">/hostindex.jsp</result>
+    		<result  name="ERROR">/fail.jsp</result>
+    	</action>
+    </package>
+ 
+    <package name="post" extends="struts-default" namespace="/" >
+    	<action name="newtitleaction" class="com.action.postAction" method="addtitle">
+    		<result name="SUCCESS">/index2.jsp</result>
+    		<result name="ERROR">/fail.jsp</result>
+    	</action>
+    	<action name="addzanaction" class="com.action.postAction" method="addzan">
+    		<result name="SUCCESS">/index2.jsp</result>
+    		<result name="ERROR">/fail.jsp</result>
+    	</action>
+    	<action name="deletepostaction" class="com.action.postAction" method="deletepost">
+    		<result name="SUCCESS">/hostindex.jsp</result>
+    		<result name="ERROR">/fail.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="host" extends="struts-default" namespace="/">
+    	<action name="hostloginaction" class="com.action.hostAction" method="hostlogin">
+    		<result name="SUCCESS">/hostindex.jsp</result>
+    		<result name="ERROR">/hostlogin.jsp</result>
+    	</action>
+    </package>
+    </struts>
