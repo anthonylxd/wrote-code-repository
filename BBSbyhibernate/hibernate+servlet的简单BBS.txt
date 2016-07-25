@@ -1,0 +1,85 @@
+项目名称： hibernate+servlet的简单BBS
+具备技术：java，jdbc，mysql，jsp，html，css，hibernate，servlet
+工具：eclipse，MySQL，sublimetext3
+
+设计：
+	使用struts2的简单的BBS，
+	管理员能够对帖子，用户进行管理。
+	用户可以浏览，发帖，点赞，
+	路人仅可以浏览帖子。	
+时间：2016.7.23—2016.7.25
+
+遇到的问题
+11问题：xxxhbm.xml里设置type提示有错attribute “type” must be declared for element "type"
+愿意：直接hibernate.cfg.xml复制开头，并不一样
+解决：   这是因为我是复制了hibernate.cfg.xml的头部文件
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+   这个应该改为mapping的头文件就行了
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net /hibernate-mapping-3.0.dtd">
+
+功能介绍：
+
+	角色：路人，用户，管理员
+
+1）路人：
+
+  （1）浏览帖子，
+  （2）无需登录，
+  （3）可注册成为用户。
+
+2）用户：
+
+  （1）登录后浏览帖子，
+  （2）发帖（可选择匿名），
+  （3）为认可的帖子点赞，
+   (4) 可刷新主页。
+
+3）管理员：
+ 
+  （1）对帖子，可以删除帖子，
+  （2）对用户进行管理，可以删除用户，
+  （3）可刷新主页。
+
+
+java文件
+com.connection
+	conn.java
+com.model
+	host.java
+	user.java
+	post.java
+	host.hbm.xml
+	user.hbm.xml
+	post.hbm.xml
+com.service
+	hostservice.java
+	postcurd.java
+	usercurd.java
+com.action
+	hostAction
+	postAction
+	userAction
+
+
+	hibernate.cfg.xml
+
+jsp文件
+	fail.jsp
+	hostlogin.jsp
+	index.jsp
+	index2.jsp
+	login.jsp
+	manageuser.jsp
+	newtitle.jsp
+	register.jsp
+	hostindex.jsp
+其它文件：
+css	
+	index.css

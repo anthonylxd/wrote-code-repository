@@ -10,3 +10,10 @@ https://github.com/anthonylxd/wrote-code-repository/tree/master/struts2的简易
 
 jsp+servlet的BBS
 https://github.com/anthonylxd/wrote-code-repository/tree/master/jsp%2Bservlet的BBS
+
+使用struts2的简单BBS
+https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbystruts2
+
+hibernate+servlet的简单BBS
+2016.7.23—2016.7.25
+https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbyhibernate

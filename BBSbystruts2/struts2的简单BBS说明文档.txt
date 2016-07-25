@@ -70,7 +70,7 @@ com.action
 	userAction
 
 
-	struts2.xml
+	struts.xml
 
 jspÎÄ¼ş
 	fail.jsp
