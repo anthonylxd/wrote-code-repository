@@ -62,10 +62,15 @@ com.service
 	hostservice.java
 	postcurd.java
 	usercurd.java
-com.action
-	hostAction
-	postAction
-	userAction
+com.servlet
+	deletepostservlet.java
+	deleteuserservlet.java
+	dianzanservlet.java
+	displaydservlet.java
+	hostloginservlet.java
+	loginservlet.java
+	newtitle.java
+	useraddservlet.java
 
 
 	hibernate.cfg.xml

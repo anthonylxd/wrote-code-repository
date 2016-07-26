@@ -17,3 +17,7 @@ https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbystruts2
 hibernate+servlet的简单BBS
 2016.7.23—2016.7.25
 https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbyhibernate
+
+struts2+hibernate的简单BBS
+2016.7.26—216.7.26
+https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbysh
