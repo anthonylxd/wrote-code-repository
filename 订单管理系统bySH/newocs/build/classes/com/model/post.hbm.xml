@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.model">
+<class name="post" table="post">
+<id name="title" type="string">
+<generator class="assigned"></generator>
+</id>
+<property name="author" type="string"></property>
+<property name="date" type="string"></property>
+<property name="agentname" type="string"></property>
+<property name="customername" type="string"></property>
+<property name="zan" type="int"></property>
+<property name="pay" type="string"></property>
+<property name="send" type="string"></property>
+</class>
+</hibernate-mapping>

@@ -1,0 +1,93 @@
+订单管理系统开发文档（ocs）
+
+应用工具：
+eclipse，mysql，tomcat
+
+应用框架：
+struts2和hibernate
+
+功能实现：
+业务员注册
+      登录
+      查看过往与自己相关的订单
+  提交新订单
+  选择发货
+代理商登录
+  查看过往与自己相关的订单
+  提交
+  提交新订单
+   		  选择付款
+
+数据表
+
+订单order
+title（订单概要）
+author（经办人）
+date（订单时间）
+agentname（代理商）
+customername（客户）
+zan（金额）
+pay（付款情况）
+send（发货情况）
+
+业务员user
+username（业务员名称）
+password（业务员登录密码）
+
+代理商host
+hostname（代理商名称）
+password（代理商登录密码）
+
+
+方法定义：
+
+com.service
+postcurd.java
+
+dispaly()业务员查看过往相关订单
+
+display2()代理商查看过往相关订单
+
+deletepost()删除订单，未使用
+
+addpost()添加订单
+
+dianzan()业务员选择是否发货
+
+payzan()代理商选择是否已付款
+
+
+com.service
+usercurd.java
+
+userlogin()业务员登录
+
+useradd()业务员注册
+
+userdelete()删除业务员，未使用
+
+com.service
+hostservice.java
+
+hostlogin()代理商登录
+
+
+模型model
+com.model
+
+host（代理商）
+属性username，password
+
+user（业务员）
+属性username，password
+
+post（订单）
+属性 
+title（订单概要）
+author（经办人）
+date（订单时间）
+agentname（代理商）
+customername（客户）
+zan（金额）
+pay（付款情况）
+send（发货情况）
