@@ -1,11 +1,14 @@
 package com.service;
 
 import java.sql.SQLException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 import com.connection.conn;
 import com.model.host;
+import com.model.user;
 
 public class hostservice {
 		private SessionFactory sf;
@@ -29,5 +32,12 @@ public class hostservice {
 			}else
 			{
 				return false;}
+		}
+		public boolean hostadd(host host) throws SQLException
+		{	
+
+			session.save(host);
+			tr.commit();
+			return true;
 		}
 }

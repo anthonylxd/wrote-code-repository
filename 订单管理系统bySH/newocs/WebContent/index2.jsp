@@ -14,7 +14,7 @@
 <body>
 <div id="wrap">
 <h1>订单管理系统</h1>
-<div class="title">你好，
+<div class="title">你好，业务员
 <%=session.getAttribute("username")%>&nbsp！
 &nbsp&nbsp
 <a href="newtitle.jsp">新增订单</a>

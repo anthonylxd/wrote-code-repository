@@ -10,7 +10,6 @@
     		<result  name="SUCCESS">/index2.jsp</result>
     		<result  name="ERROR">/login.jsp</result>
     	</action>
-    	
     	<action name="useraddAction" class="com.action.userAction" method="useradd">
     		<result  name="SUCCESS">/index2.jsp</result>
     		<result  name="ERROR">/register.jsp</result>
@@ -44,6 +43,14 @@
     	<action name="hostloginaction" class="com.action.hostAction" method="hostlogin">
     		<result name="SUCCESS">/hostindex.jsp</result>
     		<result name="ERROR">/hostlogin.jsp</result>
+    	</action>
+    	<action name="newtitlehaction" class="com.action.postAction" method="addtitle">
+    		<result name="SUCCESS">/hostindex.jsp</result>
+    		<result name="ERROR">/fail.jsp</result>
+    	</action>
+    	<action name="hostaddAction" class="com.action.hostAction" method="hostadd">
+    		<result  name="SUCCESS">/hostindex.jsp</result>
+    		<result  name="ERROR">/hostregister.jsp</result>
     	</action>
     </package>
     </struts>

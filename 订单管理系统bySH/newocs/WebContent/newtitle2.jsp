@@ -23,7 +23,7 @@ a{
 </style>
 </head>
 <body>
-<form action="newtitleaction">
+<form action="newtitlehaction">
 <table>
 <tr>
 <td>新增订单</td>

@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.service.hostservice;
+import com.service.usercurd;
 
 public class hostAction extends ActionSupport implements ModelDriven {
 	host host = new host();
@@ -32,6 +33,22 @@ public class hostAction extends ActionSupport implements ModelDriven {
 		return "ERROR";
 		}
 	}
+	public String hostadd() throws SQLException
+	{
+		host.getUsername();
+		host.getPassword();
+		ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        session.put("username", host.getUsername());		
+		if(new hostservice().hostadd(host))
+		{
+			return "SUCCESS";
+		}else
+		{
+		return "ERROR";
+		}
+	}	
+	
 	@Override
 	public Object getModel() {
 		// TODO Auto-generated method stub

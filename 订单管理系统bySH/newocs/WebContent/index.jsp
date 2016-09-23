@@ -22,5 +22,6 @@
 <a href="login.jsp">用户登录</a>
 <a href="register.jsp">用户注册</a>
 <a href="hostlogin.jsp">代理商登录</a>
+<a href="hostregister.jsp">代理商注册</a>
 </body>
 </html>
