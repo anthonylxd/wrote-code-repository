@@ -4,12 +4,14 @@ package com.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.connection.conn;
+import com.model.host;
 import com.model.user;
 
 public class usercurd {
@@ -32,9 +34,12 @@ public boolean useradd(user user) throws SQLException
 }
 public boolean userlogin(user user) throws SQLException
 {
-	user u = (user)session.get(user.class, user.getUsername());
-
-	
+	user u;
+	if(session.get(user.class, user.getUsername()) != null){
+	u = (user)session.get(user.class, user.getUsername());}
+	else{
+		return false;
+	}		
 	if(u.getUsername().equals(user.getUsername())&&u.getPassword().equals(user.getPassword()))
 	{	System.out.println(user.getUsername()+user.getPassword());
 		return true;

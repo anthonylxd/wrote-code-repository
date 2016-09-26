@@ -23,9 +23,12 @@ public class hostservice {
 		}
 		public boolean hostlogin(host host) throws SQLException
 		{
-			host u = (host)session.get(host.class, host.getUsername());
-
-			
+			host u;
+			if(session.get(host.class, host.getUsername()) != null){
+			u = (host)session.get(host.class, host.getUsername());}
+			else{
+				return false;
+			}			
 			if(u.getUsername().equals(host.getUsername())&&u.getPassword().equals(host.getPassword()))
 			{	
 				return true;

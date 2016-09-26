@@ -13,6 +13,15 @@
 <meta http-equiv="refresh" content="60">
 <title>主页</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
+<style type="text/css">
+.title{
+	height:200px;
+	font-size:24px;
+}
+a{
+	margin-top:80px;
+}
+</style>
 </head>
 <body>
 <div id="wrap">
