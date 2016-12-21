@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inter.postinter">
+
+<insert id="addpost" parameterType="post">
+insert into post(title,author,date,zan)values(#{title},#{author},#{date},#{zan})
+</insert>
+
+<select id="display" resultType="post">
+select * from post
+</select>
+
+<delete id="deletepost" parameterType="string">
+delete from post where title=#{_parameter}
+</delete>
+
+<update id="dianzan" parameterType="string">
+update post set zan=zan+1 where title=#{_parameter}
+</update>
+
+</mapper>
