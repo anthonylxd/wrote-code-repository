@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>主页</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<style type="text/css">
+	a{
+		text-decoration: none;
+	}
+	li{
+		list-style: none;
+	}
+	.main-header{
+		width: 100%;
+		height: 54px;
+		background: #364F6B;
+	}
+	.main-header ul{
+		display: inline-block;
+	}
+	.header-left li{
+		display: inline-block;
+		margin:10px 10px;
+	}
+	.websiteicon{
+		margin-left: 30px !important;
+	}
+	.websiteicon img{
+		width: 50px;
+		height: 36px;
+	}
+	.search input{
+		vertical-align: bottom;
+		border-radius: 12px;
+		width: 300px;
+		height: 30px; 
+		outline: none;
+		text-indent:5px;
+		color:green;
+		font-size: 17px;
+		border:1px solid gray;
+	}
+	.search input:focus{
+		border:1px solid green;
+	}
+	.header-right{
+		float: right;
+	}
+	.header-right li{
+		display: inline-block;
+		margin:0 10px;
+		line-height: 60px;
+		font-size: 18px;
+	}
+	.header-right li a{
+		color: #fff;
+	}
+	.ownsetting{
+		margin-right: 30px !important;
+	}
+	.usermessage{
+		margin: 0 auto;
+		width: 270px;
+		height: 270px;
+		text-align: center;
+	}
+	.usermessage img{
+		margin: 25px 0px 10px; 
+		width: 120px;
+		height: 120px;
+		border-radius: 70px;
+		text-align: right;
+	}
+	.usermessage h3{
+		font-size: 24px;
+		margin:5px 0px 15px;
+	}
+	.exhibition{
+		margin: 0 auto;
+		width:720px;
+		height: 700px;
+	}
+	.exhibition ul{
+		width:700px;
+		margin:0 auto;
+	}
+	#weiboList img{
+		width: 200px;
+		height: 200px;
+	}
+	#weiboList h5{
+		color:gray;
+		margin: 5px;
+	}
+	#weiboList p{
+		margin:10px;
+	}
+	#weiboList span{
+		display: inline-block;
+		width: 100px;
+		height: 40px;
+/*		border:1px solid #000;*/
+		color: gray;
+		font-size: 20px;
+		text-align: center;
+		line-height: 40px;
+		margin-top: 5px;
+		cursor:pointer;
+		word-spacing: 5px;
+		letter-spacing: 5px;
+	}
+	.exhibition h4{
+		margin: 15px 2px 12px;
+	}
+	</style>
+</head>
+<body>
+<div class="main-header">
+	<ul class="header-left">
+		<li class="websiteicon"><a href="index.html"><img src="images/UI2.png" title="首页" alt="首页"/></a></li>
+		<li class="search"><input type="search" placeholder="搜索" results="s"/></li>
+	</ul>
+	<ul class="header-right">
+		<li><a href="main.html">首页</a></li>
+		<li class="ownsetting"><a href="">个人设置</a></li>
+	</ul>
+</div>
+
+	<div class="usermessage" id="usermessage">
+		<img id="headImg" src="images/your name.jpg"/>
+		<h3 id="username">mumu</h3>
+		<span id="info">微博：50 关注：41 粉丝：10</span>
+	</div>
+
+		<div class="exhibition">
+			<ul id="weiboList">
+<!-- 				<li>
+					<h4>环球时报</h4>
+					<h5>2017年1月2日 18：52</h5>
+					<p>【一份迟到几十年的礼物】邮局的老爷爷在地板缝隙中，意外发现了一张被忘记寄出的圣诞卡……满满的感动！礼物虽然迟到，但是心意不会过期！[心]，或许这才是圣诞节正确的打开方式~</p>
+					<img/>
+					<div>
+					<span>转发</span>
+					<span>赞 12</span>
+					<span>评论 2</span>	
+					</div>	
+				</li> -->
+			</ul>
+
+		</div>
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+<script type="text/javascript">	
+	window.onload = function() {
+$.ajax({
+type:"POST",
+url:"http://localhost:8082/BlogA/homepage",
+dataType:"json",
+success:function(data){
+	var user = data.user;
+	loadWeibo(data.weibos,user);
+	setPersonalInfo(data.usernuminfo,user);
+},
+error:function(){
+alert("发生错误");
+}
+});
+	}
+		//查看微博加载
+	 function loadWeibo(data,user) {
+			var weibo = Array();
+			var datalength = data.length;
+		for(var i =0; i<datalength; i++){
+			weibo[i] = document.createElement("li");
+			weibo[i].value = data[i].weiboId;//设置微博Id
+			var name = document.createElement("h4");
+			var time = document.createElement("h5");
+		 	var content = document.createElement("p");
+			var img = document.createElement("img");
+			var handle = document.createElement("div");
+			var forwardbtn = document.createElement("span");
+			var zanbtn = document.createElement("span");
+			var commentbtn = document.createElement("span");
+			zanbtn.id = data[i].weiboId;//设置微博Id
+			name.innerHTML = user.username;
+			time.innerHTML = data[i].weiboTime;
+			content.innerHTML = data[i].weiboContent;
+			img.src = "images/nice.png";
+			forwardbtn.innerHTML = "转发";
+			zanbtn.innerHTML="赞"+data[i].weiboLikeNum;
+			commentbtn.innerHTML = "评论 "+data[i].weiboCommentNum;
+			weibo[i].appendChild(name);
+			weibo[i].appendChild(time);
+			weibo[i].appendChild(content);
+			weibo[i].appendChild(img);
+			weibo[i].appendChild(handle);
+			handle.appendChild(forwardbtn);
+			handle.appendChild(zanbtn);
+			handle.appendChild(commentbtn);
+			weiboList.appendChild(weibo[i]);
+			//alert(data[i].weiboId);
+			zanbtn.value = data[i].weiboId;
+			//alert(zanbtn.getAttribute("value"));
+			
+
+
+		}
+	 }
+	 zanbtn.onclick = 	function () {	
+			alert(zanbtn.id);
+	}
+	 //个人信息加载
+	function setPersonalInfo(data,user) {
+		var headImg = document.getElementById("headImg");
+		var username = document.getElementById("username");
+		var info = document.getElementById("info");
+		headImg.src="images/nice.png";//头像
+		username.innerHTML = user.username;//名字
+		info.innerHTML = "微博 "+data.weiboNum+" 关注 "+data.followNum+" 粉丝 "+data.fanNum;
+	}
+
+
+	//评论
+
+</script>
+</body>
+</html>

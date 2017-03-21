@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.weiboDao">
+<insert id="weiboInsert" parameterType="weibo">
+insert into weibo (weiboContent,weiboImg,userId,weiboLikeNum,weiboCommentNum,forwardId) values (#{weiboContent},#{weiboImg},#{userId},0,0,#{forwardId})
+</insert>
+
+<select id="weiboSelectByuserId" parameterType="java.lang.Integer" resultType="weibo">
+select userId,weiboCommentNum,weiboContent,weiboImg,weiboId,weiboLikeNum,LEFT(weiboTime,19) as weiboTime,forwardId from weibo where userId = #{0} order by weiboTime desc limit #{1},#{2}
+</select>
+
+<update id="weiboLikeAdd" parameterType="int">
+update weibo set weiboLikeNum = weiboLikeNum + #{1} where weiboId = #{0} 
+</update>
+
+<update id="weiboCommentAdd" parameterType="int">
+update weibo set weiboCommentNum = weiboCommentNum + #{1} where weiboId = #{0} 
+</update>
+
+<select id="weiboSelectByRelation" parameterType="java.util.List" resultType="weibo">
+select userId,weiboCommentNum,weiboContent,weiboImg,weiboId,weiboLikeNum,LEFT(weiboTime,19) as weiboTime,forwardId from weibo where userId in(
+<foreach collection="list" item="item" separator=",">
+#{item}
+</foreach>
+) order by weiboTime desc limit #{pageSize},#{contentSize}
+</select>
+
+<select id="weiboSelecByWeiboId" parameterType="int" resultType="weibo">
+select userId,weiboCommentNum,weiboContent,weiboImg,weiboId,weiboLikeNum,LEFT(weiboTime,19) as weiboTime,forwardId from weibo where weiboId = #{0}
+</select>
+</mapper>

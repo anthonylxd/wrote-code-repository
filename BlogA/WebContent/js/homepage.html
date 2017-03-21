@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>主页</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<style type="text/css">
+	a{
+		text-decoration: none;
+	}
+	li{
+		list-style: none;
+	}
+	.main-header{
+		width: 100%;
+		height: 54px;
+		background: #364F6B;
+	}
+	.main-header ul{
+		display: inline-block;
+	}
+	.header-left li{
+		display: inline-block;
+		margin:10px 10px;
+	}
+	.websiteicon{
+		margin-left: 30px !important;
+	}
+	.websiteicon img{
+		width: 50px;
+		height: 36px;
+	}
+	.search input{
+		vertical-align: bottom;
+		border-radius: 12px;
+		width: 300px;
+		height: 30px; 
+		outline: none;
+		text-indent:5px;
+		color:green;
+		font-size: 17px;
+		border:1px solid gray;
+	}
+	.search input:focus{
+		border:1px solid green;
+	}
+	.header-right{
+		float: right;
+	}
+	.header-right li{
+		display: inline-block;
+		margin:0 10px;
+		line-height: 60px;
+		font-size: 18px;
+	}
+	.header-right li a{
+		color: #fff;
+	}
+	.ownsetting{
+		margin-right: 30px !important;
+	}
+	.usermessage{
+		margin: 0 auto;
+		width: 270px;
+		height: 270px;
+		text-align: center;
+		cursor:pointer;
+	}
+	.usermessage img{
+		margin: 25px 0px 10px; 
+		width: 120px;
+		height: 120px;
+		border-radius: 70px;
+		text-align: right;
+	}
+	.usermessage h3{
+		font-size: 24px;
+		margin:5px 0px 15px;
+	}
+	.usermessage a {
+		margin:20px auto;
+		display: block;
+		width: 72px;
+		height: 35px;
+		border: 1px solid #000;
+		border-radius: 5px;
+		line-height:36px; 
+	}
+	.follow {
+		background: #333;
+	}
+	.exhibition{
+		margin: 0 auto;
+		width:720px;
+		height: 700px;
+	}
+	.exhibition ul{
+		width:700px;
+		margin:0 auto;
+	}
+	.weiboContent img{
+		width: 200px;
+		height: 200px;
+	}
+	.weiboContent h5{
+		color:gray;
+		margin: 5px;
+	}
+	.weiboContent p{
+		margin:10px;
+	}
+	.weiboContent a{
+		display: inline-block;
+		width: 100px;
+		height: 40px;
+		/*border:1px solid #000;*/
+		color: gray;
+		font-size: 20px;
+		text-align: center;
+		line-height: 40px;
+		margin-top: 5px;
+		cursor:pointer;
+		word-spacing: 5px;
+		letter-spacing: 5px;
+	}
+	.headImg{
+		display: inline-block;
+		width: 60px;
+		height: 60px;
+		border-radius: 60px;
+		vertical-align: top;
+	}
+	.weiboContent{
+		display: inline-block;
+		width: 600px;
+		margin-left: 10px;
+	}
+	.cancelPraise {
+		color:red;
+	}
+	.exhibition h4{
+		margin: 15px 2px 12px;
+	}
+	.comment-write {
+		width: 540px;
+		height: 25px;
+		/*outline: none;*/
+		resize: none;
+	}
+	.comment-writed {
+		width: 560px;
+		height: 40px;
+	}
+	.text-box {
+		margin:0 0 36px 10px; 
+	}
+	.text-box .btn {
+		float: right;
+		width: 72px;
+		height: 24px;
+		margin:10px 40px 5px 10px;
+	}
+	.text-box .word {
+		float: right;
+		margin-top: 10px;
+	}
+	.comment-content {
+		font-size: 14px;
+	}
+	.comment-time {
+		font-size: 13px;
+		color: gray;
+	}
+	#loadMore {
+		display: block;
+		margin: 15px auto;
+		width: 200px;
+		height: 36px;
+	}
+	</style>
+</head>
+<body>
+<div class="main-header">
+	<ul class="header-left">
+		<li class="websiteicon"><a href="index.html"><img src="images/UI2.png" title="首页" alt="首页"/></a></li>
+		<li class="search"><input type="search" placeholder="搜索" results="s"/></li>
+	</ul>
+	<ul class="header-right">
+		<li><a href="main.html">首页</a></li>
+		<li class="ownsetting"><a href="">个人设置</a></li>
+	</ul>
+</div>
+
+<div class="usermessage" id="usermessage">
+	<img id="headImg" src=""/>
+<!-- 	<img id="headImg" src="images/your name.jpg"/> -->
+	<h3 id="username"><!-- mumu --></h3>
+	<span id="info"><!-- 微博：50 关注：41 粉丝：10 --></span>
+	<a id="follow"></a>
+</div>
+
+<div class="exhibition">
+	<ul id="weiboList">
+		
+<!-- 		<li>
+			<img class="headImg" src="images/your name.jpg"/>
+			<div class="weiboContent">
+				<h4>环球时报</h4>
+				<h5>2017年1月2日 18：52</h5>
+				<p>【一份迟到几十年的礼物】邮局的老爷爷在地板缝隙中，意外发现了一张被忘记寄出的圣诞卡……满满的感动！礼物虽然迟到，但是心意不会过期！[心]，或许这才是圣诞节正确的打开方式~</p>
+				<img src="images/your name.jpg"/>
+				<div>
+					<a>转发</a>
+					<a>赞<span>12</span></a>
+					<a>评论<span>2</span></a>		
+				</div>
+				<div class="text-box">
+                	<textarea class="comment-write" autocomplete="off">评论…</textarea>
+                	<button class="btn">回 复</button>
+                	<span class="word"><span class="length">0</span>/140</span>
+            	</div>
+            	<div class="comment-box">
+					<div class="comment-content">
+                    	<p class="comment-text"><span class="user">我：</span>写的太好了。</p>
+                    	<p class="comment-time">2014-02-19 14:36</p>
+                	</div>
+                	<div class="comment-content">
+                    	<p class="comment-text"><span class="user">我：</span>写的太好了。</p>
+                    	<p class="comment-time">2014-02-19 14:36</p>
+                	</div>
+                </div>
+			</div>
+		</li> -->
+
+	</ul>
+
+	<button id="loadMore" type="button">加载更多</button>			
+</div>
+
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="js/homepage.js"></script>
+<script type="text/javascript">
+	
+window.onload = function() {
+var userId = location.search;
+$.ajax({
+type:"POST",
+url:"http://localhost:8082/BlogA/homepage",
+dataType:"json",
+data:{"page":"0","userId":userId},
+success:function(data){
+	loadWeibo(data.weibos,data.user,data.userseting);
+	setPersonalInfo(data.usernuminfo,data.user,data.userseting);
+	setWeiboList();
+},
+error:function(){
+alert("发生错误");
+}
+});
+//setWeiboList();
+}
+
+	//个人信息加载
+	function setPersonalInfo(usernuminfo,user,userseting) {
+		var headImg = document.getElementById("headImg");
+		var username = document.getElementById("username");
+		var info = document.getElementById("info");
+		headImg.src="images/nice.png";//头像
+		username.innerHTML = user.username;//名字
+		info.innerHTML = "微博 "+usernuminfo.weiboNum+" 关注 "+usernuminfo.followNum+" 粉丝 "+usernuminfo.fanNum;
+		// var usermessage = document.getElementById("usermessage");
+		// usermessage.onclick = function() {
+		// 	location.href = "homepage.html?"+user.userId;
+		// }
+		var follow = document.getElementById("follow");
+		//0代表未关注，1代表已关注
+		if(userseting.info == "0") {
+			follow.innerHTML = "关注";
+		}else{
+			follow.innerHTML = "取消关注"
+			follow.className = "follow";
+		}
+		follow.onclick = function() {
+		setFollow(userseting.userId,userseting.info,follow);
+		if(userseting.info == "0") {
+			userseting.info = "1";
+		}else{
+			userseting.info = "0";
+		}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

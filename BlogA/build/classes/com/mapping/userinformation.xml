@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.userinformationDao">
+
+<insert id="userinfoInsert" parameterType="int">
+	insert into userinformation (userId) values (#{_parameter})
+</insert>
+
+<update id="userinfoUpdate" parameterType="userinformation">
+	update userinformation set email = #{email}, sex = #{sex},birthday = #{birthday},
+	residence = #{residence},profession = #{profession},qq = #{qq},school = #{school},
+	url=#{url},phone=#{phone} where userId = #{userId} 
+</update>
+
+<select id="userinfoSelect" parameterType="int" resultType="userinformation">
+	select email,phone,sex,birthday,residence,profession,qq,school,url from userinformation where userId = #{_parameter}
+</select>
+
+</mapper>

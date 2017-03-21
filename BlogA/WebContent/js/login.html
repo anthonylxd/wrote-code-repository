@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<style type="text/css">
+	body{
+		background: rgb(59,185,218);
+	}
+	.login{
+		/*background: rgb(79,193,233);*/
+		width: 420px;
+		height: 300px;
+		margin:0 auto; 
+		margin-top: 12%;
+		/*border:1px solid #000;*/
+	}
+	.login h2{
+		text-align: center;
+	}
+	.login input{
+		margin:14px auto;
+		display: block;
+		width: 300px;
+		height: 36px;
+		border:1px solid gray; 
+		border-radius: 10px;
+		outline: none;
+		text-indent: 5px;
+		font-size: 17px;
+	}
+	.login label{
+		margin-left: 50px;
+	}
+	.login input:hover{
+		border:1px solid #1C86EE;
+	}
+	.login button{
+		margin:36px auto;
+		display: block;
+		width: 300px;
+		height: 34px;
+		border-radius: 8px;
+		font-size: 17px;
+		word-spacing: 5px;
+		letter-spacing: 5px;
+		color: #FC5185;
+	}
+	.login a{
+		width: 300px;
+		display: block;
+		margin:0 auto;
+	}
+	</style>
+</head>
+<body>
+<div class="login" id="login">
+<h2>microblog</h2>
+	<input id="username" type="text" name="username" placeholder="用户名"/>
+	<input id="password" type="password" name="password" placeholder="密码"/>
+	<button id="submit" type="button">登录</button>	
+	<a href="register.html">没有帐号，去注册</a>
+</div>
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+<script type="text/javascript">
+	var submit =  document.getElementById("submit");
+	var login =  document.getElementById("login");
+	var username = document.getElementById("username");
+	var password = document.getElementById("password");
+	submit.onclick = function(){
+	//清除原有提示信息
+	var labels = document.getElementsByTagName("label");
+	for(var i =0 ; i<labels.length;i++){
+		//labels[i].parentNode.removeChild(labels[i]);
+		labels[i].parentNode.removeChild(labels[i]);
+	}
+	//检测用户名是否为空
+	if(username.value.trim() == ""){
+		var prompt = document.createElement("label");
+		prompt.innerHTML = "用户名不能为空";
+		//submit.appendChild(prompt);
+		login.insertBefore(prompt,username);
+		return false;
+	}
+	//检测密码是否为空
+	if(password.value.trim() == ""){
+		var prompt = document.createElement("label");
+		prompt.innerHTML = "密码不能为空";
+		login.insertBefore(prompt,password);
+		return false;
+	}
+
+		//创建XMLHttpRequest
+	var request;
+	if(window.XMLHttpRequest){
+		request = new XMLHttpRequest();
+	}else{
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	request.open("post","http://localhost:8082/BlogA/userLogin",true);
+	request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	request.send("username="+username.value.trim()+"&password="+password.value.trim());
+	// if(reuqest.readyState===4 &&(request.status===200||request.status == 304)){
+	// 	alert(request.responseText);
+	// }
+	request.onreadystatechange=function() {
+  		if (request.readyState==4 && request.status==200){
+		var result = request.responseText;
+		if(result == 0) {
+		var prompt = document.createElement("label");
+		prompt.innerHTML = "用户名或密码不正确";
+		//submit.appendChild(prompt);
+		login.insertBefore(prompt,username);
+		}else{
+			location.href = "main.html";
+		}	
+		return false;
+    }
+  }
+
+	}
+
+
+
+</script>
+</body>
+</html>
