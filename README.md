@@ -21,3 +21,7 @@ https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbyhibernate
 struts2+hibernate的简单BBS
 2016.7.26—216.7.26
 https://github.com/anthonylxd/wrote-code-repository/tree/master/BBSbysh
+
+模拟储蓄平台
+2017.3.28-3.29
+https://github.com/anthonylxd/wrote-code-repository/tree/master/PraticeProject
