@@ -4,6 +4,7 @@ package com.dto;
  */
 
 import com.entity.SuccessKilled;
+import com.enums.SeckillStatEnum;
 
 public class SeckillExecution {
 
@@ -49,19 +50,19 @@ public class SeckillExecution {
 		this.successKilled = successKilled;
 	}
 
-	public SeckillExecution(long seckillId, int state, String stateInfo, SuccessKilled successKilled) {
+	public SeckillExecution(long seckillId, SeckillStatEnum statEnum,SuccessKilled successKilled) {
 		super();
 		this.seckillId = seckillId;
-		this.state = state;
-		this.stateInfo = stateInfo;
+		this.state = statEnum.getState();
+		this.stateInfo = statEnum.getStateInfo();
 		this.successKilled = successKilled;
 	}
 
-	public SeckillExecution(long seckillId, int state, String stateInfo) {
+	public SeckillExecution(long seckillId, SeckillStatEnum statEnum) {
 		super();
 		this.seckillId = seckillId;
-		this.state = state;
-		this.stateInfo = stateInfo;
+		this.state = statEnum.getState();
+		this.stateInfo = statEnum.getStateInfo();
 	}
 	
 	
