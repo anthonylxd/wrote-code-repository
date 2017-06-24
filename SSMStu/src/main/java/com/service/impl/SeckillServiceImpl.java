@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import com.dao.SeckillDao;
 import com.dao.SuccessKilledDao;
+import com.dao.cache.RedisDao;
 import com.dto.Exposer;
 import com.dto.SeckillExecution;
 import com.entity.Seckill;
@@ -32,6 +33,9 @@ public class SeckillServiceImpl implements SeckillService {
 	@Autowired
 	private SuccessKilledDao successKilledDao;
 	
+	@Autowired
+	private RedisDao redisDao;
+	
 	// md5盐值字符串，用于混淆MD5
 	private final String salt = "a1234567890b";
 
@@ -44,10 +48,25 @@ public class SeckillServiceImpl implements SeckillService {
 	}
 
 	public Exposer exportSeckillUrl(long seckillId) {
-		Seckill seckill = seckillDao.queryById(seckillId);
-		if (seckill == null) {
-			return new Exposer(false, seckillId);
+		//优化点 缓存优化,超时的基础上维护一致性
+		//1:访问redis
+		Seckill seckill = redisDao.getSeckill(seckillId);
+		if(seckill == null) {
+			//2:访问数据库
+			seckill = seckillDao.queryById(seckillId);
+			if(seckill == null) {
+				return new Exposer(false, seckillId);
+			}else{
+				//3:放入redis
+				redisDao.putSeckill(seckill);
+			}
 		}
+		
+		
+//		Seckill seckill = seckillDao.queryById(seckillId);
+//		if (seckill == null) {
+//			return new Exposer(false, seckillId);
+//		}
 		Date startTime = seckill.getStartTime();
 		Date endTime = seckill.getEndTime();
 		// 系统当前时间
@@ -81,33 +100,60 @@ public class SeckillServiceImpl implements SeckillService {
 			if (md5 == null || !md5.equals(getMD5(seckillId))) {
 				throw new SeckillException("seckill data rewrite");
 			}
-			// 执行秒杀逻辑：减库存 - 记录购买行为
 			Date nowTime = new Date();
-
-			// 减库存
-			int updateCount = seckillDao.reduceNumber(seckillId, nowTime);
-			if (updateCount <= 0) {
-				// 没有更新到记录,秒杀结束
-				throw new SeckillCloseException("seckill is closed");
+			// 减库存成功，记录购买行为
+			int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
+			// 唯一验证
+			if (insertCount <= 0) {
+				// 重复秒杀
+				throw new RepeatKillException("seckill is repeated");
 			} else {
-				// 减库存成功，记录购买行为
-				int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
-				// 唯一验证
-				if (insertCount <= 0) {
-					// 重复秒杀
-					throw new RepeatKillException("seckill is repeated");
+				// 减库存,热点商品竞争
+				int updateCount = seckillDao.reduceNumber(seckillId, nowTime);
+				if (updateCount <= 0) {
+					// 没有更新到记录,秒杀结束，rolllback
+					throw new SeckillCloseException("seckill is closed");
 				} else {
-					// 秒杀成功
+					// 秒杀成功，commit
 					SuccessKilled successKilled = successKilledDao.queryBuIdWithSeckill(seckillId, userPhone);
-					return new SeckillExecution(seckillId, SeckillStatEnum.SUCCESS, successKilled);
+					return new SeckillExecution(seckillId, SeckillStatEnum.SUCCESS, successKilled);					
 				}
+				
+//				// 秒杀成功
+//				SuccessKilled successKilled = successKilledDao.queryBuIdWithSeckill(seckillId, userPhone);
+//				return new SeckillExecution(seckillId, SeckillStatEnum.SUCCESS, successKilled);
 			}
+			
+			
+//			if (md5 == null || !md5.equals(getMD5(seckillId))) {
+//				throw new SeckillException("seckill data rewrite");
+//			}
+			// 执行秒杀逻辑：减库存 - 记录购买行为
+//			Date nowTime = new Date();
+
+//			// 减库存
+//			int updateCount = seckillDao.reduceNumber(seckillId, nowTime);
+//			if (updateCount <= 0) {
+//				// 没有更新到记录,秒杀结束
+//				throw new SeckillCloseException("seckill is closed");
+//			} else {
+////				// 减库存成功，记录购买行为
+////				int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
+////				// 唯一验证
+////				if (insertCount <= 0) {
+////					// 重复秒杀
+////					throw new RepeatKillException("seckill is repeated");
+////				} else {
+////					// 秒杀成功
+////					SuccessKilled successKilled = successKilledDao.queryBuIdWithSeckill(seckillId, userPhone);
+////					return new SeckillExecution(seckillId, SeckillStatEnum.SUCCESS, successKilled);
+////				}
+//			}
 		} catch(SeckillCloseException el) {
 			throw el;
 		}catch (RepeatKillException el2) {
 			throw el2;
-		}	
-		catch (Exception e) {
+		}catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			// 所有编译器异常，转化为运行期异常
 			throw new SeckillException("seckill inner error" + e.getMessage());

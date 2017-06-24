@@ -67,5 +67,10 @@ system-properties-mode="NEVER"/>，
 	<property name="basePackage" value="com.dao"/>
 	
 </bean>
-
+	
+	<!-- RedisDao -->
+	<bean id="redisDao" class="com.dao.cache.RedisDao">
+		<constructor-arg index="0" value="localhost"/>
+		<constructor-arg index="1" value="6379"/>
+	</bean>
 </beans>
