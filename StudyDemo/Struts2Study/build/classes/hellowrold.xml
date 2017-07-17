@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<package name="default" namespace="/" extends="struts-default" strict-method-invocation="false">		
+		<action name="hellostruts" class="com.action.HelloAction">
+			<result>/result.jsp</result>
+		</action>
+	
+		<action name="addAction" method="add" class="com.action.HelloAction">
+			<result>/result.jsp</result>
+		</action>
+		
+		<action name="updateAction" method="update" class="com.action.HelloAction">
+			<result>/result.jsp</result>
+		</action>
+		
+		<action name="LgoinAction" method="login" class="com.action.LoginAction">
+			<result name="success">/result.jsp</result>
+		</action>
+		
+		<action name="Lgoin2Action" method="login" class="com.action.Login2Action">
+			<result name="success">/result.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+	</package>
+</struts>
