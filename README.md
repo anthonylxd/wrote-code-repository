@@ -17,6 +17,11 @@
   <td></td>
 </tr>
 <tr>
+  <td><a href="https://github.com/anthonylxd/wrote-code-repository/tree/master/StudyDemo">学习实例</a></td>
+  <td>2016.3-</td>
+  <td></td>
+</tr>
+<tr>
   <td><a href="https://github.com/anthonylxd/wrote-code-repository/tree/master/SSMStu">简单秒杀系统</a></td>
   <td>2017.3-2017.4</td>
   <td>基于SSM，使用Maven管理</td>
