@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//WebContent/frame=gb2312
+encoding//WebContent/frame/addDepartment.html=gb2312
+encoding//WebContent/frame/list.html=gb2312
+encoding//WebContent/frame/listDep.html=gb2312
+encoding//WebContent/frame/listEmployee.html=gb2312
+encoding//src/log4j.properties=UTF-8
