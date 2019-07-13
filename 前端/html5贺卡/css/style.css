@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    height: 0;
+    border: none;
+    font-size: 1.5625vw;
+    font-family: "Microsoft Yahei";
+}
+
+#music {
+    width: 15vw;
+    height: 15vw;
+}
